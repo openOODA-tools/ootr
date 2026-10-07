@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ootr-bin
+_pkgname=ootr
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Streaming character set translator, squeezer, and complement mapping engine."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ootr"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ootr')
+conflicts=('ootr')
+source_x86_64=("${url}/releases/download/v${pkgver}/ootr-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ootr-linux-x86_64" "${pkgdir}/usr/bin/ootr"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ootr-uninstall"
+}
